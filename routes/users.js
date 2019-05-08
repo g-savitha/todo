@@ -6,8 +6,8 @@ const passport = require('passport');
 
 //load User Model
 
-require('../models/User');
-const User = mongoose.model('users');
+require('../models/user');
+const user = mongoose.model('users');
 
 
 // login routes
@@ -52,7 +52,7 @@ router.post('/register', (req, res) => {
             password2: req.body.password2
         });
     } else {
-        User.findOne({
+        user.findOne({
                 email: req.body.email
             })
             .then(user => {
@@ -60,7 +60,7 @@ router.post('/register', (req, res) => {
                     req.flash('error_msg', 'You\'ve already been registered, please login to continue');
                     res.redirect('/users/register');
                 } else {
-                    const newUser = new User({
+                    const newUser = new user({
                         name: req.body.name,
                         email: req.body.email,
                         password: req.body.password
