@@ -14,9 +14,11 @@ const passport = require('passport')
 const db = require('./config/db');
 //connect to DB
 //mongoose.connect(db.mongoURI, {useNewUrlParser: true}).then(() => console.log('MongoDB Connected!')).catch(err => console.log(err));
-mongoose.connect(db.mongoURI)
-        .then(() => console.log('MongoDB Connected!'))
-        .catch(err => console.log(err));
+mongoose.connect(db.mongoURI,{useNewUrlParser: true}).then(() => {
+    console.log('MongoDB connected...');
+}).catch(err => {
+    console.log(err);
+});
 
 //link Route files
 const todo = require('./routes/todo');
